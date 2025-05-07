@@ -138,6 +138,7 @@ const CreatePatient = () => {
           </div>
 
           <div className={styles.formGroup}>
+            <label htmlFor='birthDate'>Data de nascimento</label>
             <input
               type="date"
               id="birthDate"
