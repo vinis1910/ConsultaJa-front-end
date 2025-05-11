@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(0, 195, 165);
+    background-color: #f5f5f5;
     padding: 20px;
   }
   
@@ -17,7 +17,7 @@
   }
   
   .title {
-    color: rgb(0, 195, 165);
+    color: #333;
     text-align: center;
     margin-bottom: 30px;
     font-size: 28px;
@@ -35,11 +35,11 @@
     flex-direction: column;
     gap: 8px;
   }
-  
-  .label {
-    color: #006064;
+
+  .formGroup label {
     font-weight: 500;
-    font-size: 16px;
+    color: #555;
+    font-size: 11px;
   }
   
   .input {
@@ -53,12 +53,12 @@
   
   .input:focus {
     outline: none;
-    border-color: rgb(47, 122, 221);
+    border-color: rgb(7, 204, 143);
     box-shadow: 0 0 0 3px rgba(79, 179, 191, 0.2);
   }
   
   .submitButton {
-    background-color: rgb(103, 152, 218);
+    background-color: rgb(7, 204, 143);
     color: white;
     border: none;
     padding: 14px;
@@ -71,11 +71,10 @@
   }
   
   .submitButton:hover {
-    background-color: rgb(41, 110, 199);
+    background-color: rgb(7, 160, 112);
     transform: translateY(-2px);
   }
 
-  /* Estilos para as notificações */
 .notification {
   position: fixed;
   top: 20px;
