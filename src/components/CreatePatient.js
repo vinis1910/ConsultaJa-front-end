@@ -6,7 +6,7 @@ const CreatePatient = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    name: '',
+    firstName: '',
     lastName: '',
     birthDate: '',
     phone: ''
@@ -46,7 +46,7 @@ const CreatePatient = () => {
       setFormData({
         email: '',
         password: '',
-        name: '',
+        firstName: '',
         lastName: '',
         birthDate: '',
         phone: ''
@@ -114,9 +114,9 @@ const CreatePatient = () => {
           <div className={styles.formGroup}>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
               onChange={handleChange}
               className={styles.input}
               placeholder='Digite seu nome'
