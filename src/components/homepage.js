@@ -1,37 +1,20 @@
 import React from 'react';
-import './App.css';
+import { useNavigate } from 'react-router-dom';
+import '../styles/homepage.css';
 
 function Mainpage() {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="Mainpage">
-      {/* Menu de navegação */}
-      <header className="header">
-        <nav className="navbar">
-          <div className="logo">ConsultaJá</div>
-          <ul className="nav-links">
-
-            <li><a href="/home">Início</a></li>
-            <li><a href="/services">Serviços</a></li>
-            <li><a href="/about">Sobre Nós</a></li>
-            
-          </ul>
-          <div className="auth-section">
-            <div className="auth-input-group">
-              <input type="text" placeholder="Usuário" className="auth-input" />
-              <input type="password" placeholder="Senha" className="auth-input" />
-              <button className="login-btn">Login</button>
-            </div>
-            <a href="/register" className="register-link">Não tenho conta</a>
-          </div>
-        </nav>
-      </header>
-
-      {/* Seção Principal */}
       <main>
         <section id="home" className="banner">
           <h1 className="banner-title">Bem-vindo ao <span className="highlight">ConsultaJá</span></h1>
-          <p>Conectando você aos melhores profissionais de saúde.</p>
-          <button className="cta-btn">Agendar Consulta</button>
+          <p className='text1'>Conectando você aos melhores profissionais de saúde.</p>
+          <button className="cta-btn" onClick={handleButtonClick}>Agendar Consulta</button>
         </section>
 
         <section id="services" className="services">
@@ -52,7 +35,6 @@ function Mainpage() {
           </div>
         </section>
 
-        {/* Avaliações de Usuários */}
         <section id="reviews" className="reviews">
           <h2>Avaliações de Usuários</h2>
           <div className="carousel">
@@ -71,8 +53,8 @@ function Mainpage() {
           </div>
         </section>
       </main>
+    </div>
+  );
+}
 
-      {/* Rodapé */}
-      <footer className="footer">
-        <p>&copy; 2025 ConsultaJá. Todos os direitos reservados.</p>
-      </footer>
+export default Mainpage;
