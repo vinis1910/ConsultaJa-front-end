@@ -6,7 +6,8 @@ const CreateDoctor = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     gender: 'Masculino',
     cpf: '',
     birthDate: '',
@@ -43,7 +44,8 @@ const CreateDoctor = () => {
       setFormData({
         email: '',
         password: '',
-        name: '',
+        firstName: '',
+        lastName: '',
         gender: 'Masculino',
         cpf: '',
         birthDate: '',
@@ -113,14 +115,25 @@ const CreateDoctor = () => {
           </div>
 
           <div className={styles.formGroup}>
-            
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
               onChange={handleChange}
-              placeholder='Digite seu nome completo'
+              placeholder='Digite seu nome'
+              required
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder='Digite seu sobrenome'
               required
             />
           </div>
