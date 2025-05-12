@@ -12,7 +12,7 @@ body {
 .banner {
   text-align: center;
   padding: 50px 20px;
-  background: #e6f9f4;
+  background: #fafafa;
 }
 
 .banner-title {
@@ -29,7 +29,7 @@ body {
 
 .cta-btn {
   padding: 10px 20px;
-  background: #06cc8f;
+  background: #00df90;
   color: white;
   border: none;
   border-radius: 5px;
@@ -42,7 +42,9 @@ body {
 }
 
 /* Seções de Conteúdo */
-.services, .about, .contact {
+.services,
+.about,
+.contact {
   padding: 40px 20px;
   text-align: center;
 }
@@ -88,5 +90,5 @@ body {
 .review-card h4 {
   margin-top: 10px;
   font-weight: bold;
-  color: #06cc8f;
+  color: #00df90;
 }

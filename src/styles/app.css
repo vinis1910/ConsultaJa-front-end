@@ -1,5 +1,5 @@
 .header {
-  background: #06cc8f;
+  background: #00df90;
   padding: 12px 20px;
   display: flex;
   justify-content: space-between;
@@ -11,7 +11,8 @@
   align-items: center;
 }
 
-.logo-img, .logo-img2 {
+.logo-img,
+.logo-img2 {
   width: 160px;
   height: auto;
 }
