@@ -15,7 +15,7 @@ const CreatePatient = () => {
   const [notification, setNotification] = useState({
     show: false,
     message: "",
-    type: "", // 'success' ou 'error'
+    type: "",
   });
 
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ const CreatePatient = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/patient", formData, {
+      const response = await axios.post("http://localhost:3001/patient", formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -42,7 +42,6 @@ const CreatePatient = () => {
 
       showNotification("Cadastro realizado com sucesso!", "success");
 
-      // Reseta o formulário
       setFormData({
         email: "",
         password: "",
@@ -52,7 +51,6 @@ const CreatePatient = () => {
         phone: "",
       });
     } catch (error) {
-      // Mostra mensagem de erro
       const errorMessage = error.response?.data?.message || "Erro ao cadastrar paciente. Por favor, tente novamente.";
       showNotification(errorMessage, "error");
     }
@@ -65,7 +63,6 @@ const CreatePatient = () => {
       type,
     });
 
-    // Esconde a notificação após 5 segundos
     setTimeout(() => {
       setNotification((prev) => ({ ...prev, show: false }));
     }, 5000);

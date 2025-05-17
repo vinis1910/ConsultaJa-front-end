@@ -1,20 +1,23 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../styles/homepage.css';
+import { useNavigate } from "react-router-dom";
+import "../styles/homepage.css";
 
 function Mainpage() {
   const navigate = useNavigate();
   const handleButtonClick = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     <div className="Mainpage">
       <main>
         <section id="home" className="banner">
-          <h1 className="banner-title">Bem-vindo ao <span className="highlight">ConsultaJá</span></h1>
-          <p className='text1'>Conectando você aos melhores profissionais de saúde.</p>
-          <button className="cta-btn" onClick={handleButtonClick}>Agendar Consulta</button>
+          <h1 className="banner-title">
+            Bem-vindo ao <span className="highlight">ConsultaJá</span>
+          </h1>
+          <p className="text1">Conectando você aos melhores profissionais de saúde.</p>
+          <button className="cta-btn" onClick={handleButtonClick}>
+            Agendar Consulta
+          </button>
         </section>
 
         <section id="services" className="services">
