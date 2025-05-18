@@ -21,8 +21,6 @@ jobs:
 
       - name: Enviar para o S3
         uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read --delete
         env:
           AWS_S3_BUCKET: consulta-ja-frontend
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
