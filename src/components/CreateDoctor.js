@@ -34,7 +34,7 @@ const CreateDoctor = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3001/doctors", formData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/doctors`, formData);
 
       if (response.status !== 201) {
         throw new Error();
