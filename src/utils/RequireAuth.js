@@ -4,7 +4,7 @@ import { useAuth } from "./AuthContext";
 export const RequireAuth = ({children}) => {
     const auth = useAuth();
 
-    if(!auth.authData){
+    if(!auth.user){
         return <Navigate to='/login'></Navigate>;
     }
 
