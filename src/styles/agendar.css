@@ -1,0 +1,387 @@
+.agendar-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.agendar-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 4px rgba(0,0,0,0.08);
+  padding: 40px 38px 32px 38px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.agendar-title {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #036044;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.agendar-subtitle {
+  font-size: 1.08rem;
+  color: #4f4f4f;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.agendar-notification {
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.agendar-notification.success {
+  background: #e0fbe6;
+  color: #1b7f3a;
+  border-left: 5px solid #00df90;
+}
+
+.agendar-notification.error {
+  background: #ffeaea;
+  color: #c62828;
+  border-left: 5px solid #ff5252;
+}
+
+.agendar-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.agendar-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.agendar-group {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.agendar-group label {
+  font-weight: 600;
+  color: #036044;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendario-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.data-selecionada {
+  font-weight: 500;
+  color: #00df90;
+  font-size: 0.95rem;
+}
+
+.agendar-select,
+.agendar-textarea {
+  padding: 12px 14px;
+  border: 1.5px solid #b2dfdb;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f8fafc;
+  transition: all 0.2s;
+  outline: none;
+  resize: none;
+  color: #2d3748;
+}
+
+.agendar-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23036044' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 36px;
+}
+
+.agendar-select:focus,
+.agendar-textarea:focus {
+  border-color: #00df90;
+  background-color: #e0f7fa;
+  box-shadow: 0 0 0 2px rgba(0,223,144,0.1);
+}
+
+.agendar-select:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.agendar-btn {
+  margin-top: 10px;
+  padding: 15px 0;
+  background: linear-gradient(90deg, #00df90 60%, #036044 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.15rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,223,144,0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.agendar-btn:hover,
+.agendar-btn:focus {
+  background: linear-gradient(90deg, #036044 60%, #00df90 100%);
+  box-shadow: 0 4px 16px rgba(0,223,144,0.2);
+  transform: translateY(-1px);
+}
+
+.agendar-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0,223,144,0.1);
+}
+
+.calendario-container {
+  padding: 4px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+  margin: 10px 0;
+}
+
+.agendar-calendario {
+  height: 500px;
+  margin-bottom: 12px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.rbc-calendar {
+  font-family: inherit;
+  font-size: 1rem;
+  border: none;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.rbc-toolbar {
+  display: flex;
+  justify-content: flex-end !important;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-bottom: 1px solid #e0f7fa;
+  position: relative;
+}
+
+.rbc-toolbar-label {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #036044;
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.rbc-btn-group {
+  display: flex;
+  gap: 4px;
+}
+
+.rbc-btn-group:first-child {
+  position: absolute;
+  left: 16px;
+}
+
+.rbc-btn-group:last-child {
+  margin-left: auto;
+}
+
+.rbc-toolbar button {
+  background: none;
+  border: 1px solid #b2dfdb;
+  color: #036044;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.rbc-toolbar button:hover {
+  background: #e0f7fa;
+  border-color: #00df90;
+}
+
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+  background: #b2dfdb;
+  color: #036044;
+}
+
+.rbc-header {
+  padding: 10px 4px;
+  color: #036044;
+  font-weight: 600;
+  text-transform: capitalize;
+  background: #e0f7fa;
+  border-bottom: none;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.rbc-time-header-content > .rbc-row.rbc-row-resource {
+  display: none;
+}
+
+.rbc-time-header-content .rbc-row {
+  min-height: 40px;
+}
+
+.rbc-time-view .rbc-header {
+  border-bottom: none;
+  position: relative;
+}
+
+.rbc-time-header-content {
+  border-left: none;
+}
+
+.rbc-time-view, .rbc-time-content {
+  border: none;
+}
+
+.rbc-timeslot-group {
+  border-bottom: 1px solid #e0f7fa;
+  min-height: 50px;
+}
+
+.rbc-timeslot-group:last-child {
+  border-bottom: none;
+}
+
+.rbc-time-content > * + * > * {
+  border-left: 1px solid #e0f7fa;
+}
+
+.rbc-time-content {
+  border-top: 1px solid #b2dfdb;
+}
+
+.rbc-time-gutter {
+  font-weight: 500;
+  color: #036044;
+}
+
+.rbc-label {
+  padding: 6px;
+}
+
+.rbc-day-slot .rbc-time-slot {
+  border-top: none;
+}
+
+.rbc-today {
+  background-color: #e0f7fa !important;
+}
+
+.rbc-slot-selection {
+  background-color: #00df9020 !important;
+  border: 2px solid #00df90 !important;
+  border-radius: 4px;
+}
+
+.rbc-event {
+  background-color: #ff5252;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+}
+
+.rbc-time-slot-disabled,
+.rbc-day-disabled {
+  background-color: #f0f0f0 !important;
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+@media (max-width: 768px) {
+  .agendar-card {
+    padding: 28px 16px 24px 16px;
+    margin: 0 10px;
+    border-radius: 12px;
+  }
+  .agendar-title {
+    font-size: 1.8rem;
+  }
+  .agendar-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .rbc-calendar {
+    font-size: 0.92rem;
+  }
+  .rbc-toolbar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 8px;
+  }
+  .rbc-toolbar-label {
+    position: static;
+    transform: none;
+    margin-bottom: 8px;
+  }
+  .rbc-btn-group:first-child {
+    position: static;
+  }
+  .agendar-calendario {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agendar-notification {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+  .agendar-calendario {
+    height: 350px;
+  }
+}
