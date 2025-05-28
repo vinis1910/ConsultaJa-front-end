@@ -5,6 +5,8 @@ import CreateDoctor from "./components/CreateDoctor";
 import "./styles/app.css";
 import LoginForm from "./components/LoginForm";
 import { AuthProvider } from "./utils/AuthContext";
+import AccountSettings from "./components/AccountSettings";
+import ScheduleSettings from "./components/ScheduleSettings";
 
 function Header() {
   return (
@@ -54,6 +56,8 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<CreatePatient />} />
           <Route path="/doctor-signup" element={<CreateDoctor/>} />
+          <Route path="/conta" element={<AccountSettings/>} />
+          <Route path="/atendimento" element={<ScheduleSettings/>}/>
         </Routes>
       </main>
       <Footer />
