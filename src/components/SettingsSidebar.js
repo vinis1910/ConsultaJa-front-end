@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useAuth} from '../utils/AuthContext';
 import styles from '../styles/SettingsSidebar.module.css';
+import { jwtDecode } from 'jwt-decode';
 
 const SettingsSidebar = () => {
-  const auth = useAuth();
+  const decodedToken = jwtDecode(localStorage.getItem("user"));
 
   return (
     <div className={styles.sidebar}>
@@ -13,13 +13,13 @@ const SettingsSidebar = () => {
           Configurações da Conta
         </Link>
         
-        {auth.authData.role === 'Doctor' && (
+        {decodedToken.role === 'Doctor' && (
           <Link to="/atendimento" className={styles.navItem}>
             Horários e Dias de Atendimento
           </Link>
         )}
 
-        {auth.authData.role === 'Patient' && (
+        {decodedToken.role === 'Patient' && (
           <Link to="/#" className={styles.navItem}>
             Meus Agendamentos
           </Link>

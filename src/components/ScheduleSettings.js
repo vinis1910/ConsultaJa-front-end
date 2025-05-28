@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import SettingsSidebar from './SettingsSidebar';
 import styles from '../styles/ScheduleSettings.module.css';
+import { jwtDecode } from 'jwt-decode';
+import axios from "axios";
 
 const daysMapping = [
   { pt: 'Segunda-feira', en: 'monday' },
@@ -13,6 +15,8 @@ const daysMapping = [
 ];
 
 const ScheduleSettings = () => {
+  const token = jwtDecode(localStorage.getItem("user"));
+  console.log(token);
   const [schedule, setSchedule] = useState(
     daysMapping.map(day => ({
       displayDay: day.pt,  // Exibição em português
@@ -49,7 +53,7 @@ const ScheduleSettings = () => {
     setSchedule(newSchedule);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     const activeSchedules = schedule.filter(daySchedule => 
@@ -62,11 +66,27 @@ const ScheduleSettings = () => {
       day: serverDay,  // Envia em inglês
       startTime,
       endTime,
-      interval: parseInt(interval)
+      interval: parseInt(interval),
+      doctorId: token.sub
     }));
     
-    console.log('Dados para enviar:', dataToSend);
-    // axios.post(`${process.env.REACT_APP_API_URL}/schedule`, dataToSend)
+    //console.log('Dados para enviar:', dataToSend);
+    
+    try{
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/doctors/config-availability`, dataToSend);
+
+      //console.log(response);
+      if (response.status !== 201) {
+        throw new Error();
+      }
+
+      console.log("atualizado");
+
+    } catch (error){
+      const errorMessage = error.response?.data?.message || "Erro ao atualizar horários. Tente novamente.";
+      console.log(errorMessage);
+    }
+
   };
 
   return (

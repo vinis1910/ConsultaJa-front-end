@@ -7,6 +7,7 @@ import LoginForm from "./components/LoginForm";
 import { AuthProvider } from "./utils/AuthContext";
 import AccountSettings from "./components/AccountSettings";
 import ScheduleSettings from "./components/ScheduleSettings";
+import {RequireAuth} from "./utils/RequireAuth";
 
 function Header() {
   return (
@@ -28,6 +29,9 @@ function Header() {
         </li>
         <li>
           <a href="/about">Área do Médico</a>
+        </li>
+        <li>
+          <a href="/conta">Conta</a>
         </li>
       </ul>
       <div>
@@ -56,8 +60,8 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<CreatePatient />} />
           <Route path="/doctor-signup" element={<CreateDoctor/>} />
-          <Route path="/conta" element={<AccountSettings/>} />
-          <Route path="/atendimento" element={<ScheduleSettings/>}/>
+          <Route path="/conta" element={<RequireAuth><AccountSettings/></RequireAuth>} />
+          <Route path="/atendimento" element={<RequireAuth><ScheduleSettings/></RequireAuth>}/>
         </Routes>
       </main>
       <Footer />
