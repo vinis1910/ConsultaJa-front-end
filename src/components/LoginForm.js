@@ -16,10 +16,10 @@ const LoginForm = () => {
   const auth = useAuth();
 
   useEffect(() => {
-    if (auth.authData) {
+    if (auth.user) {
       navigate("/", { replace: true });
     }
-  }, [auth.authData, navigate]);
+  }, [auth.user, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,12 +39,8 @@ const LoginForm = () => {
 
       if (response.data.statusCode !== 200) {throw new Error();} 
 
-      const authData = {
-        token: response.data.data.access_token,
-        role: response.data.data.role,
-      };
-
-      auth.login(authData);
+      const token = response.data.data.access_token;
+      auth.login(token);
       navigate('/',{replace:true});
 
     } catch (error) {
