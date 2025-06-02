@@ -1,8 +1,65 @@
 import React, { useState } from "react";
 import axios from "axios";
-import styles from "../styles/CreateDoctor.module.css";
+import styles from "../styles/CreateAccount.module.css";
 
 const CreateDoctor = () => {
+
+  const specializations = [
+    "Anestesiologista",
+    "Angiologista",
+    "Cardiologista",
+    "Cirurgião Cardiovascular",
+    "Cirurgião da Mão",
+    "Cirurgião de Cabeça e Pescoço",
+    "Cirurgião do Aparelho Digestivo",
+    "Cirurgião Geral",
+    "Cirurgião Pediátrico",
+    "Cirurgião Plástico",
+    "Cirurgião Torácico",
+    "Cirurgião Vascular",
+    "Clínico Geral",
+    "Dermatologista",
+    "Endocrinologista",
+    "Endoscopista",
+    "Gastroenterologista",
+    "Geneticista",
+    "Geriatra",
+    "Ginecologista",
+    "Hematologista",
+    "Homeopata",
+    "Infectologista",
+    "Mastologista",
+    "Médico do Trabalho",
+    "Médico de Família e Comunidade",
+    "Nefrologista",
+    "Neurocirurgião",
+    "Neurologista",
+    "Nutrólogo",
+    "Nutricionista",
+    "Obstetra",
+    "Oftalmologista",
+    "Oncologista Clínico",
+    "Ortopedista",
+    "Otorrinolaringologista",
+    "Pediatra",
+    "Pneumologista",
+    "Proctologista",
+    "Psiquiatra",
+    "Psicólogo(a)",
+    "Reumatologista",
+    "Sexólogo",
+    "Urologista",
+    "Fisiatra",
+    "Fisioterapeuta",
+    "Terapia Ocupacional",
+    "Fonodiólogo(a)",
+    "Médico Intensivista",
+    "Médico Esportivo",
+    "Médico Paliativista",
+    "Outros",
+    "Alergista/Imunologista"
+  ];
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -13,7 +70,8 @@ const CreateDoctor = () => {
     birthDate: "",
     phone: "",
     crm: "",
-    crmUf: "AC",
+    crmUf: "",
+    specialization:""
   });
 
   const [notification, setNotification] = useState({
@@ -52,6 +110,7 @@ const CreateDoctor = () => {
         phone: "",
         crm: "",
         crmUf: "",
+        specialization:""
       });
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Erro ao cadastrar médico. Tente novamente.";
@@ -128,9 +187,22 @@ const CreateDoctor = () => {
           <div className={styles.formGroup}>
             <label htmlFor="crmUf">UF do CRM</label>
             <select id="crmUf" name="crmUf" value={formData.crmUf} onChange={handleChange} required>
+              <option value="">selecione</option>
               {states.map((state) => (
                 <option key={state} value={state}>
                   {state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.formGroup}>
+            <label htmlFor="specialization">Especialidade</label>
+            <select id="specialization" name="specialization" value={formData.specialization} onChange={handleChange} required>
+              <option value="">selecione</option>
+              {specializations.map((spec) => (
+                <option key={spec} value={spec}>
+                  {spec}
                 </option>
               ))}
             </select>
