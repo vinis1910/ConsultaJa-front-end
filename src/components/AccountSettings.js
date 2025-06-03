@@ -109,7 +109,7 @@ const AccountSettings = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              required
+              
             />
           </div>
 
