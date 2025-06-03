@@ -16,11 +16,10 @@ const daysMapping = [
 
 const ScheduleSettings = () => {
   const token = jwtDecode(localStorage.getItem("user"));
-  console.log(token);
   const [schedule, setSchedule] = useState(
     daysMapping.map(day => ({
-      displayDay: day.pt,  // Exibição em português
-      serverDay: day.en,   // Envio em inglês
+      displayDay: day.pt,
+      serverDay: day.en,
       startTime: '',
       endTime: '',
       interval: 30,
@@ -28,11 +27,28 @@ const ScheduleSettings = () => {
     }))
   );
 
+  const [notification, setNotification] = useState({
+        show: false,
+        message: "",
+        type: "",
+    });
+  
+  const showNotification = (message, type) => {
+    setNotification({
+      show: true,
+      message,
+      type,
+    });
+
+    setTimeout(() => {
+      setNotification((prev) => ({ ...prev, show: false }));
+    }, 5000);
+  };
+
   const handleChange = (index, field, value) => {
     const newSchedule = [...schedule];
     newSchedule[index][field] = value;
     
-    // Se está configurando horários, marca como ativo automaticamente
     if ((field === 'startTime' || field === 'endTime') && value) {
       newSchedule[index].active = true;
     }
@@ -44,7 +60,6 @@ const ScheduleSettings = () => {
     const newSchedule = [...schedule];
     newSchedule[index].active = !newSchedule[index].active;
     
-    // Limpa os horários se estiver desativando
     if (!newSchedule[index].active) {
       newSchedule[index].startTime = '';
       newSchedule[index].endTime = '';
@@ -63,28 +78,25 @@ const ScheduleSettings = () => {
     );
     
     const dataToSend = activeSchedules.map(({ serverDay, startTime, endTime, interval }) => ({
-      day: serverDay,  // Envia em inglês
+      day: serverDay,
       startTime,
       endTime,
       interval: parseInt(interval),
       doctorId: token.sub
     }));
     
-    //console.log('Dados para enviar:', dataToSend);
-    
     try{
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/doctors/config-availability`, dataToSend);
 
-      //console.log(response);
       if (response.status !== 201) {
         throw new Error();
       }
 
-      console.log("atualizado");
+      showNotification("Horários de atendimento atualizados com sucesso","success");
 
     } catch (error){
       const errorMessage = error.response?.data?.message || "Erro ao atualizar horários. Tente novamente.";
-      console.log(errorMessage);
+      showNotification(errorMessage,"error")
     }
 
   };
@@ -94,6 +106,9 @@ const ScheduleSettings = () => {
       <SettingsSidebar />
       <div className={styles.content}>
         <h1>Horários de Atendimento</h1>
+
+        {notification.show && <div className={`${styles.notification} ${styles[notification.type]}`}>{notification.message}</div>}
+
         <form onSubmit={handleSubmit} className={styles.form}>
           {schedule.map((daySchedule, index) => (
             <div key={daySchedule.serverDay} className={styles.dayContainer}>

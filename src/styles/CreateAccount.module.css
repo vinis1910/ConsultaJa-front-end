@@ -53,11 +53,11 @@
 .formGroup input:focus,
 .formGroup select:focus {
   outline: none;
-  border-color: rgb(7, 204, 143);
+  border-color: #00d188;
 }
 
 .submitButton {
-  background-color: rgb(7, 204, 143);
+  background-color: #00d188;
   color: white;
   border: none;
   padding: 12px;
@@ -124,3 +124,13 @@
   height: 16px;
   accent-color: rgb(103, 152, 218);
 }
+
+.formGroup select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+}
+

@@ -4,18 +4,17 @@ body {
   line-height: 1.6;
 }
 
-.Mainpage main {
+.mainpage main {
   display: block;
 }
 
-/* Banner */
 .banner {
   text-align: center;
   padding: 50px 20px;
   background: #fafafa;
 }
 
-.banner-title {
+.banner_title {
   font-size: 3rem;
   font-weight: bold;
 }
@@ -27,7 +26,7 @@ body {
   color: rgb(3, 93, 39);
 }
 
-.cta-btn {
+.cta_btn {
   padding: 10px 20px;
   background: #00df90;
   color: white;
@@ -36,12 +35,11 @@ body {
   cursor: pointer;
 }
 
-.cta-btn:hover {
+.cta_btn:hover {
   background: #036044;
   transition: background 0.3s ease;
 }
 
-/* Seções de Conteúdo */
 .services,
 .about,
 .contact {
@@ -49,14 +47,13 @@ body {
   text-align: center;
 }
 
-/* Seção de Avaliações */
 .reviews {
   padding: 40px 20px;
   text-align: center;
   background: #f9f9f9;
 }
 
-.service-cards {
+.service_cards {
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -78,7 +75,7 @@ body {
   scroll-snap-type: x mandatory;
 }
 
-.review-card {
+.review_card {
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -87,7 +84,7 @@ body {
   scroll-snap-align: center;
 }
 
-.review-card h4 {
+.review_card h4 {
   margin-top: 10px;
   font-weight: bold;
   color: #00df90;
