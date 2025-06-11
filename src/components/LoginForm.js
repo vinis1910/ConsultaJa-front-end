@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/Login.module.css';
 import { useAuth } from '../utils/AuthContext';
+import SelectCreate from './SelectCreate'; // Importação adicionada
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const LoginForm = () => {
 
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showSelectCreate, setShowSelectCreate] = useState(false); // Estado para modal
   const navigate = useNavigate();
   const auth = useAuth();
 
@@ -84,6 +86,14 @@ const LoginForm = () => {
             />
           </div>
 
+          <button
+          type="button"
+          className={styles.createAccountButton}
+          onClick={() => setShowSelectCreate(true)}
+        >
+          Criar nova conta
+        </button>
+
           <button 
             type="submit" 
             className={styles.loginButton}
@@ -93,6 +103,9 @@ const LoginForm = () => {
           </button>
         </form>
       </div>
+      {showSelectCreate && (
+        <SelectCreate onClose={() => setShowSelectCreate(false)} />
+      )}
     </div>
   );
 };
