@@ -86,3 +86,25 @@
   text-align: center;
   font-size: 14px;
 }
+
+.createAccountButton {
+  background: none;
+  border: none;
+  color: #00d188;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 18px;
+  margin-top: 10px;
+  padding: 0;
+  text-align: left;
+  width: auto;
+  transition: color 0.2s;
+  text-decoration: underline;
+  display: inline-block;
+}
+
+.createAccountButton:hover {
+  color: #036044;
+  text-decoration: underline;
+}
