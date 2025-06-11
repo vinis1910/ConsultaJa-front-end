@@ -2,6 +2,7 @@ import styles from "../styles/Navbar.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
 import { useState, useRef, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -11,7 +12,15 @@ const Navbar = () => {
     const accountRef = useRef(null);
     const consultasRef = useRef(null);
 
-    // Fecha dropdowns ao clicar fora
+    // Descobre se é médico
+    let isDoctor = false;
+    if (auth.user) {
+        try {
+            const decoded = jwtDecode(auth.user);
+            isDoctor = decoded.role === "Doctor";
+        } catch {}
+    }
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (
@@ -29,13 +38,24 @@ const Navbar = () => {
     const handleLogout = () => {
         auth.logout();
         setAccountDropdown(false);
+        setConsultasDropdown(false);
         navigate("/");
+    };
+
+    // Funções para garantir só um dropdown aberto
+    const handleAccountDropdown = () => {
+        setAccountDropdown(v => !v);
+        setConsultasDropdown(false);
+    };
+    const handleConsultasDropdown = () => {
+        setConsultasDropdown(v => !v);
+        setAccountDropdown(false);
     };
 
     return (
         <header className={styles.header}>
             <div className={styles.left}>
-                {/* Botão de Login/Conta */}
+
                 <div className={styles.dropdownWrapper} ref={accountRef}>
                     {!auth.user ? (
                         <button
@@ -49,7 +69,7 @@ const Navbar = () => {
                         <>
                             <button
                                 className={styles.text_button}
-                                onClick={() => setAccountDropdown(v => !v)}
+                                onClick={handleAccountDropdown}
                                 type="button"
                             >
                                 Minha conta
@@ -78,11 +98,11 @@ const Navbar = () => {
                         </>
                     )}
                 </div>
-                {/* Botão Consultas */}
+
                 <div className={styles.dropdownWrapper} ref={consultasRef}>
                     <button
                         className={styles.text_button}
-                        onClick={() => setConsultasDropdown(v => !v)}
+                        onClick={handleConsultasDropdown}
                         type="button"
                     >
                         Consultas
@@ -93,22 +113,30 @@ const Navbar = () => {
                                 className={styles.dropdownItem}
                                 onClick={() => {
                                     setConsultasDropdown(false);
-                                    navigate("/nova-consulta");
+                                    if (!auth.user) {
+                                        navigate("/entrar");
+                                    } else if (isDoctor) {
+                                        navigate("/meus-horarios");
+                                    } else {
+                                        navigate("/nova-consulta");
+                                    }
                                 }}
                                 type="button"
                             >
-                                Nova consulta
+                                {isDoctor ? "Meus horários" : "Nova consulta"}
                             </button>
-                            <button
-                                className={styles.dropdownItem}
-                                onClick={() => {
-                                    setConsultasDropdown(false);
-                                    navigate("/historico");
-                                }}
-                                type="button"
-                            >
-                                Meu histórico
-                            </button>
+                            {auth.user && !isDoctor && (
+                                <button
+                                    className={styles.dropdownItem}
+                                    onClick={() => {
+                                        setConsultasDropdown(false);
+                                        navigate("/historico");
+                                    }}
+                                    type="button"
+                                >
+                                    Meu histórico
+                                </button>
+                            )}
                         </div>
                     )}
                 </div>

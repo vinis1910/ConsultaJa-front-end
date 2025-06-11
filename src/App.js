@@ -9,6 +9,9 @@ import ScheduleSettings from "./components/ScheduleSettings";
 import {RequireAuth} from "./utils/RequireAuth";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import NewSchedule from "./components/NewSchedule";
+import DoctorSchedules from "./components/DoctorSchedules";
+
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
           <Route path="/criar-conta/medico" element={<CreateDoctor/>} />
           <Route path="/conta" element={<RequireAuth><AccountSettings/></RequireAuth>} />
           <Route path="/atendimento" element={<RequireAuth><ScheduleSettings/></RequireAuth>}/>
+          <Route path="/nova-consulta" element={<NewSchedule />} />
+          <Route path="/meus-horarios" element={<RequireAuth><DoctorSchedules/></RequireAuth>} />
         </Routes>
       <Footer/>
     </Router>
