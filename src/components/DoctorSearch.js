@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import styles from  '../styles/DoctorSearch.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const DoctorSearch = () => {
   const [searchData, setSearchData] = useState({
     specialization: '',
     city: ''
   });
+
+  const navigate = useNavigate();
 
   const specializations = [
     "Anestesiologista",
@@ -73,7 +76,13 @@ const DoctorSearch = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Dados da busca:', searchData);
+
+    const queryParams = new URLSearchParams({
+      especialidade: searchData.specialization,
+      cidade: searchData.city
+    }).toString();
+
+    navigate(`/pesquisa?${queryParams}`);
   };
 
   return (
