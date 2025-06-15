@@ -1,0 +1,76 @@
+.searchContainer {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.searchTitle {
+  text-align: left;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.searchForm {
+  width: 100%;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.searchInput {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #00df90;
+  box-shadow: 0 0 0 2px rgba(0, 223, 144, 0.2);
+}
+
+.buttonWrapper {
+  display: flex;
+  height: 55%;
+}
+
+.searchButton {
+  background-color: #00d188;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 75%;
+  height: 37px;
+  white-space: nowrap;
+}
+
+.searchButton:hover {
+  background-color: #00c97d;
+}
