@@ -1,4 +1,5 @@
 import styles from "../styles/Home.module.css";
+import DoctorSearch from "./DoctorSearch";
 
 function Home() {
   return (
@@ -9,6 +10,10 @@ function Home() {
             Bem-vindo ao <span className={styles.highlight}>ConsultaJá</span>
           </h1>
           <p className={styles.text1}>Conectando você aos melhores profissionais de saúde.</p>
+          
+        </section>
+          <DoctorSearch/>
+        <section>
           
         </section>
 

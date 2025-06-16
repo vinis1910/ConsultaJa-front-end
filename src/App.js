@@ -9,6 +9,7 @@ import ScheduleSettings from "./components/ScheduleSettings";
 import {RequireAuth} from "./utils/RequireAuth";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/criar-conta/medico" element={<CreateDoctor/>} />
           <Route path="/conta" element={<RequireAuth><AccountSettings/></RequireAuth>} />
           <Route path="/atendimento" element={<RequireAuth><ScheduleSettings/></RequireAuth>}/>
+          <Route path="/pesquisa" element={<SearchResults/>}/>
         </Routes>
       <Footer/>
     </Router>
