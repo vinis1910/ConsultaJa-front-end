@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../styles/SearchResults.module.css';
 import { FormatPhone } from '../utils/FormatPhone';
+import { useAuth } from '../utils/AuthContext';
 
 const SearchResults = () => {
   const location = useLocation();
@@ -13,6 +14,7 @@ const SearchResults = () => {
   const searchParams = new URLSearchParams(location.search);
   const especialidade = searchParams.get('especialidade');
   const cidade = searchParams.get('cidade');
+  const auth = useAuth();
 
   useEffect(() => {
     
@@ -47,8 +49,12 @@ const SearchResults = () => {
     }
   }, [location.search,especialidade,cidade]);
 
-  const handleScheduleAppointment = (doctorId) => {
-    navigate(`/agendar/${doctorId}`);
+  const handleScheduleAppointment = (doctor) => {
+    if (!auth.user) {
+      navigate("/entrar");
+    } else {
+      navigate("/nova-consulta", { state: { doctor } });
+    }
   };
 
   if (loading) {
@@ -56,13 +62,33 @@ const SearchResults = () => {
   }
 
   if (error) {
-    return <div className={styles.error}>{error}</div>;
+    return (
+      <div className={styles.error}>
+        {error}
+        <br />
+        <button
+          className={styles.scheduleButton}
+          style={{ marginTop: 16 }}
+          onClick={() => navigate(-1)}
+        >
+          Voltar
+        </button>
+      </div>
+    );
   }
 
   if (doctors.length === 0) {
     return (
       <div className={styles.noResults}>
         Nenhum médico encontrado para os critérios de busca.
+        <br />
+        <button
+          className={styles.scheduleButton}
+          style={{ marginTop: 16 }}
+          onClick={() => navigate(-1)}
+        >
+          Voltar
+        </button>
       </div>
     );
   }
@@ -92,7 +118,7 @@ const SearchResults = () => {
               </p>
             </div>
             <button
-              onClick={() => handleScheduleAppointment(doctor.id)}
+              onClick={() => handleScheduleAppointment(doctor)}
               className={styles.scheduleButton}
             >
               Agendar Consulta
