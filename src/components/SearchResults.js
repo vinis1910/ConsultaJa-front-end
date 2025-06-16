@@ -5,6 +5,7 @@ import styles from '../styles/SearchResults.module.css';
 import { FormatPhone } from '../utils/FormatPhone';
 import { useAuth } from '../utils/AuthContext';
 
+
 const SearchResults = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const SearchResults = () => {
   const especialidade = searchParams.get('especialidade');
   const cidade = searchParams.get('cidade');
   const auth = useAuth();
+
 
   useEffect(() => {
     
@@ -49,6 +51,7 @@ const SearchResults = () => {
     }
   }, [location.search,especialidade,cidade]);
 
+
   const handleScheduleAppointment = (doctor) => {
     if (!auth.user) {
       navigate("/entrar");
@@ -75,6 +78,7 @@ const SearchResults = () => {
         </button>
       </div>
     );
+
   }
 
   if (doctors.length === 0) {
@@ -89,6 +93,7 @@ const SearchResults = () => {
         >
           Voltar
         </button>
+
       </div>
     );
   }
@@ -119,6 +124,7 @@ const SearchResults = () => {
             </div>
             <button
               onClick={() => handleScheduleAppointment(doctor)}
+
               className={styles.scheduleButton}
             >
               Agendar Consulta

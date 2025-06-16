@@ -25,22 +25,8 @@ function App() {
             <Route path="/entrar" element={<LoginForm />} />
             <Route path="/criar-conta/paciente" element={<CreatePatient />} />
             <Route path="/criar-conta/medico" element={<CreateDoctor />} />
-            <Route
-              path="/conta"
-              element={
-                <RequireAuth>
-                  <AccountSettings />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/atendimento"
-              element={
-                <RequireAuth>
-                  <ScheduleSettings />
-                </RequireAuth>
-              }
-            />
+            <Route path="/conta" element={<RequireAuth><AccountSettings/></RequireAuth>} />
+            <Route path="/atendimento" element={<RequireAuth><ScheduleSettings/></RequireAuth>}/>
             <Route path="/pesquisa" element={<SearchResults />} />
             <Route path="/nova-consulta" element={<NewSchedule />} />
             <Route path="/meus-horarios" element={<RequireAuth> <DoctorSchedules /> </RequireAuth>}/>

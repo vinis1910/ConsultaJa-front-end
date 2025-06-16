@@ -10,7 +10,6 @@ const DoctorSearch = () => {
   });
 
   const [locating, setLocating] = useState(false);
-
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,7 +19,6 @@ const DoctorSearch = () => {
       [name]: value
     }));
   };
-
 
   const handleDetectLocation = async () => {
     if (!navigator.geolocation) {

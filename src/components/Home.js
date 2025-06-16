@@ -12,6 +12,10 @@ function Home() {
           <p className={styles.text1}>Conectando você aos melhores profissionais de saúde.</p>
           
         </section>
+          <DoctorSearch/>
+        <section>
+          
+        </section>
 
         <section>        
           <DoctorSearch/>
