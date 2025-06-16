@@ -1,64 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../styles/CreateAccount.module.css";
+import { useNavigate } from "react-router-dom";
+import specializations from "../utils/specializations.js";
 
 const CreateDoctor = () => {
 
-  const specializations = [
-    "Anestesiologista",
-    "Angiologista",
-    "Cardiologista",
-    "Cirurgião Cardiovascular",
-    "Cirurgião da Mão",
-    "Cirurgião de Cabeça e Pescoço",
-    "Cirurgião do Aparelho Digestivo",
-    "Cirurgião Geral",
-    "Cirurgião Pediátrico",
-    "Cirurgião Plástico",
-    "Cirurgião Torácico",
-    "Cirurgião Vascular",
-    "Clínico Geral",
-    "Dermatologista",
-    "Endocrinologista",
-    "Endoscopista",
-    "Gastroenterologista",
-    "Geneticista",
-    "Geriatra",
-    "Ginecologista",
-    "Hematologista",
-    "Homeopata",
-    "Infectologista",
-    "Mastologista",
-    "Médico do Trabalho",
-    "Médico de Família e Comunidade",
-    "Nefrologista",
-    "Neurocirurgião",
-    "Neurologista",
-    "Nutrólogo",
-    "Nutricionista",
-    "Obstetra",
-    "Oftalmologista",
-    "Oncologista Clínico",
-    "Ortopedista",
-    "Otorrinolaringologista",
-    "Pediatra",
-    "Pneumologista",
-    "Proctologista",
-    "Psiquiatra",
-    "Psicólogo(a)",
-    "Reumatologista",
-    "Sexólogo",
-    "Urologista",
-    "Fisiatra",
-    "Fisioterapeuta",
-    "Terapia Ocupacional",
-    "Fonodiólogo(a)",
-    "Médico Intensivista",
-    "Médico Esportivo",
-    "Médico Paliativista",
-    "Outros",
-    "Alergista/Imunologista"
-  ];
 
   const [formData, setFormData] = useState({
     email: "",
@@ -79,6 +26,8 @@ const CreateDoctor = () => {
     message: "",
     type: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,6 +61,11 @@ const CreateDoctor = () => {
         crmUf: "",
         specialization:""
       });
+
+      setTimeout(() => {
+        navigate("/entrar"); // Redireciona para login após sucesso
+      }, 1000);
+
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Erro ao cadastrar médico. Tente novamente.";
       showNotification(errorMessage, "error");

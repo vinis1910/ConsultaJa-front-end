@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from  '../styles/DoctorSearch.module.css';
 import { useNavigate } from 'react-router-dom';
+import specializations from '../utils/specializations.js'; 
 
 const DoctorSearch = () => {
   const [searchData, setSearchData] = useState({
@@ -8,63 +9,8 @@ const DoctorSearch = () => {
     city: ''
   });
 
+  const [locating, setLocating] = useState(false);
   const navigate = useNavigate();
-
-  const specializations = [
-    "Anestesiologista",
-    "Angiologista",
-    "Cardiologista",
-    "Cirurgião Cardiovascular",
-    "Cirurgião da Mão",
-    "Cirurgião de Cabeça e Pescoço",
-    "Cirurgião do Aparelho Digestivo",
-    "Cirurgião Geral",
-    "Cirurgião Pediátrico",
-    "Cirurgião Plástico",
-    "Cirurgião Torácico",
-    "Cirurgião Vascular",
-    "Clínico Geral",
-    "Dermatologista",
-    "Endocrinologista",
-    "Endoscopista",
-    "Gastroenterologista",
-    "Geneticista",
-    "Geriatra",
-    "Ginecologista",
-    "Hematologista",
-    "Homeopata",
-    "Infectologista",
-    "Mastologista",
-    "Médico do Trabalho",
-    "Médico de Família e Comunidade",
-    "Nefrologista",
-    "Neurocirurgião",
-    "Neurologista",
-    "Nutrólogo",
-    "Nutricionista",
-    "Obstetra",
-    "Oftalmologista",
-    "Oncologista Clínico",
-    "Ortopedista",
-    "Otorrinolaringologista",
-    "Pediatra",
-    "Pneumologista",
-    "Proctologista",
-    "Psiquiatra",
-    "Psicólogo(a)",
-    "Reumatologista",
-    "Sexólogo",
-    "Urologista",
-    "Fisiatra",
-    "Fisioterapeuta",
-    "Terapia Ocupacional",
-    "Fonodiólogo(a)",
-    "Médico Intensivista",
-    "Médico Esportivo",
-    "Médico Paliativista",
-    "Outros",
-    "Alergista/Imunologista"
-  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,6 +18,32 @@ const DoctorSearch = () => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleDetectLocation = async () => {
+    if (!navigator.geolocation) {
+      alert("Geolocalização não suportada pelo navegador.");
+      return;
+    }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+      try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`);
+        const data = await res.json();
+        const city = data.address.city || data.address.town || data.address.village || '';
+        setSearchData(prev => ({
+          ...prev,
+          city
+        }));
+      } catch {
+        alert("Não foi possível detectar a cidade.");
+      }
+      setLocating(false);
+    }, () => {
+      alert("Permissão de localização negada.");
+      setLocating(false);
+    });
   };
 
   const handleSubmit = (e) => {
@@ -87,7 +59,7 @@ const DoctorSearch = () => {
 
   return (
     <div className={styles.searchContainer}>
-      <h2 className={styles.searchTitle}>Agende sua consulta</h2>
+      <h2 className={styles.searchTitle}>Encontre profissionais perto de você</h2>
       <form onSubmit={handleSubmit} className={styles.searchForm}>
         <div className={styles.formGrid}>
           <div className={styles.formGroup}>
@@ -108,15 +80,26 @@ const DoctorSearch = () => {
 
           <div className={styles.formGroup}>
             <label htmlFor="city">Cidade</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              value={searchData.city}
-              onChange={handleChange}
-              placeholder="Digite a cidade"
-              className={styles.searchInput}
-            />
+            <div style={{ display: "flex", gap: 8 }}>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                value={searchData.city}
+                onChange={handleChange}
+                placeholder="Digite a cidade"
+                className={styles.searchInput}
+              />
+              <button
+                type="button"
+                onClick={handleDetectLocation}
+                disabled={locating}
+                style={{ minWidth: 40 }}
+                title="Detectar localização"
+              >
+                {locating ? "..." : "📍"}
+              </button>
+            </div>
           </div>
 
           <div className={styles.buttonWrapper}>

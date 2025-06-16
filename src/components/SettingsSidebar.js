@@ -20,8 +20,8 @@ const SettingsSidebar = () => {
         )}
 
         {decodedToken.role === 'Patient' && (
-          <Link to="/#" className={styles.navItem}>
-            Meus Agendamentos
+          <Link to="/consultas" className={styles.navItem}>
+            Histórico de Consultas
           </Link>
         )}
       </nav>

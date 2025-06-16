@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "../styles/CreateAccount.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CreatePatient = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,8 @@ const CreatePatient = () => {
     message: "",
     type: "",
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -50,6 +53,10 @@ const CreatePatient = () => {
         birthDate: "",
         phone: "",
       });
+
+      setTimeout(() => {
+        navigate("/entrar"); 
+      }, 1000); 
     } catch (error) {
       const errorMessage = error.response?.data?.message || "Erro ao cadastrar paciente. Por favor, tente novamente.";
       showNotification(errorMessage, "error");

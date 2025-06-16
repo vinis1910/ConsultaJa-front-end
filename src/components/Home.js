@@ -17,6 +17,14 @@ function Home() {
           
         </section>
 
+        <section>        
+          <DoctorSearch/>
+        </section>
+        
+        <section>
+          
+        </section>
+
         <section className={styles.services}>
           <h2>Nossos Serviços</h2>
           <div className={styles.service_cards}>

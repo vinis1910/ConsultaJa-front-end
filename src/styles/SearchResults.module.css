@@ -20,7 +20,8 @@
   color: #555;
 }
 
-.error {
+.error,
+.noResults{
   color: #f44336;
 }
 

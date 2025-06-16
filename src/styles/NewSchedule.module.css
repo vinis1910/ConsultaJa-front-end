@@ -1,0 +1,125 @@
+.container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.scheduleTableWrapper {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+.scheduleTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: #fff;
+}
+
+.scheduleTable th,
+.scheduleTable td {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navRow {
+  background-color: #00d188;
+  color: #fff;
+  position: relative;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: color 0.2s;
+}
+
+.left {
+  left: 1rem;
+}
+
+.right {
+  right: 1rem;
+}
+
+.navButton:hover:not(:disabled) {
+  color: #036044;
+}
+
+.navButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.weekLabel {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.dayHeader {
+  background-color: #f0f6fc;
+  color: #222;
+  text-transform: capitalize;
+  font-weight: 600;
+  border-bottom: 2px solid #e3e8ee;
+}
+
+.scheduleTable td {
+  background-color: #fff;
+  height: 70px;
+  border-bottom: 1px solid #e3e8ee;
+  border-right: 1px solid #f5f5f5;
+}
+
+.scheduleTable td:last-child {
+  border-right: none;
+}
+
+.activeDay {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.activeDay:hover {
+  background-color: #e6faf3;
+  color: #00d188;
+}
+
+.pastDay {
+  background-color: #f5f5f5;
+  color: #bbb;
+  cursor: not-allowed;
+  border-radius: 6px;
+}
+
+.pastDay:hover {
+  background-color: #f5f5f5;
+  color: #bbb;
+}
+
+.dayName {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #00d188;
+}
+
+.dayDate {
+  font-size: 0.95rem;
+  color: #222;
+  margin-top: 2px;
+}
